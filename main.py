@@ -32,10 +32,6 @@ time.sleep(1)
 cookie = driver.find_element(By.ID, "bigCookie")
 time.sleep(2)
 
-# items = driver.find_elements(By.CSS_SELECTOR, "#products .unlocked")
-# item_ids = [item.get_attribute('id') for item in items]
-# print(item_ids)
-
 five_min = time.time() + 60 * 500
 timeout = time.time() + 5
 while True:
@@ -45,7 +41,6 @@ while True:
         item_ids = [item.get_attribute('id') for item in items]
 
         item_prices_elements = driver.find_elements(By.CSS_SELECTOR, "#products .product .price")
-        # TODO -> upgrade the list "item_prices" to handle 'million', etc.
         item_prices = []
         for i in item_prices_elements:
             if i.text != "":
@@ -72,7 +67,6 @@ while True:
         try:
             # algo-1
             highest_price_affordable_upgrade = max(affordable_products)
-            # print(highest_price_affordable_upgrade)
             to_purchase_id = affordable_products[highest_price_affordable_upgrade]
             driver.find_element(By.ID, to_purchase_id).click()
 
